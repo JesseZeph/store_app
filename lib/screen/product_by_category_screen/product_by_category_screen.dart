@@ -79,9 +79,11 @@ class ProductByCategoryScreen extends StatelessWidget {
                                     items: const ['Low To High', 'High To Low'],
                                     onChanged: (val) {
                                       if (val?.toLowerCase() == 'low to high') {
-                                        //TODO: should complete call sortProducts (ascending: true)
+                                        context.proByCProvider
+                                            .sortProducts(ascending: true);
                                       } else {
-                                        //TODO: should complete call sortProducts (ascending: false)
+                                        context.proByCProvider
+                                            .sortProducts(ascending: false);
                                       }
                                     },
                                     displayItem: (val) => val,
@@ -96,7 +98,8 @@ class ProductByCategoryScreen extends StatelessWidget {
                                         items: proByCatProvider.brands,
                                         onSelectionChanged: (val) {
                                           proByCatProvider.selectedBrands = val;
-                                          //TODO: should complete call filterProductByBrand
+                                          context.proByCProvider
+                                              .filterProductByBrand();
                                           proByCatProvider.updateUI();
                                         },
                                         displayItem: (val) => val.name ?? '',

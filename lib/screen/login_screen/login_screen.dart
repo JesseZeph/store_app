@@ -1,3 +1,5 @@
+// ignore_for_file: body_might_complete_normally_nullable
+
 import 'package:e_shop/utility/extensions.dart';
 
 import '../../utility/app_color.dart';

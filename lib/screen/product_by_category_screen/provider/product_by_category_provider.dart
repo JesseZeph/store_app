@@ -52,9 +52,33 @@ class ProductByCategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //TODO: should complete filterProductByBrand
+  void filterProductByBrand() {
+    if (selectedBrands.isEmpty) {
+      //if no brands are selected
+      filteredProduct = _dataProvider.products
+          .where((product) =>
+              product.proSubCategoryId?.name == mySelectedSubCategory?.name)
+          .toList();
+    } else {
+      filteredProduct = _dataProvider.products
+          .where((product) =>
+              product.proSubCategoryId?.name == mySelectedSubCategory?.name &&
+              selectedBrands
+                  .any((brand) => product.proBrandId?.sId == brand.sId))
+          .toList();
+    }
+  }
 
-  //TODO: should complete sortProducts
+  void sortProducts({required bool ascending}) {
+    filteredProduct.sort((a, b) {
+      if (ascending) {
+        return a.price!.compareTo(b.price ?? 0);
+      } else {
+        return b.price!.compareTo(a.price ?? 0);
+      }
+    });
+    notifyListeners();
+  }
 
   void updateUI() {
     notifyListeners();
